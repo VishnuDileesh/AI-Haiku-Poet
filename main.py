@@ -7,6 +7,7 @@ from langchain.prompts.chat import (ChatPromptTemplate, SystemMessagePromptTempl
 import os 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
+
 chatllm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, temperature=0.9, model="gpt-3.5-turbo")
 
 human_template = ("Write me a haiku about {theme}")
@@ -20,6 +21,8 @@ system_message_prompt = SystemMessagePromptTemplate.from_template(system_templat
 chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
 
 app = FastAPI()
+
+app = FastAPI(docs_url=None, redoc_url=None)
 
 
 @app.get("/haiku")
