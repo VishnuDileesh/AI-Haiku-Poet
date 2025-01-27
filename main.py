@@ -1,11 +1,19 @@
 from fastapi import FastAPI
 from typing import Union
 
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain.prompts.chat import (ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate)
 
 import os 
+
+load_dotenv()
+
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+
+
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY environment variable is not set.")
 
 
 chatllm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, temperature=0.9, model="gpt-3.5-turbo")
