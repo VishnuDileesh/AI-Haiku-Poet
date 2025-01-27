@@ -65,6 +65,26 @@ Example response:
 }
 ```
 
+## Deployment
+
+The application uses Gunicorn as the WSGI server for production deployment:
+
+1. Install Gunicorn if not already installed:
+```bash
+pip install gunicorn
+```
+
+2. Start the application with Gunicorn:
+```bash
+gunicorn main:app -c gunicorn.conf.py
+```
+
+Key considerations for production:
+- Ensure your `.env` file is properly configured with production settings
+- Use appropriate security headers and CORS settings
+- Set up proper monitoring and logging
+- Consider using a reverse proxy like Nginx in front of Gunicorn
+
 ## License
 
 MIT License 
